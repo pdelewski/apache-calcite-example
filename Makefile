@@ -5,6 +5,9 @@ OUT_DIR = out
 # Define main class
 MAIN_CLASS = Main
 
+.PHONY: all
+all: native-image
+
 # Target to download dependencies using Maven
 .PHONY: deps
 deps:
