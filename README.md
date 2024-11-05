@@ -1,4 +1,4 @@
-# mavenutils
+# Apache calcite example
 
 This is an example pom.xml for downloading apache calcite dependencies via
 
