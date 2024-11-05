@@ -15,7 +15,7 @@ import org.apache.calcite.tools.Frameworks;
 import org.apache.calcite.tools.Planner;
 import org.apache.calcite.tools.RelBuilder;
 import org.apache.calcite.plan.RelOptUtil;
-
+import org.graalvm.polyglot.Context;
 
 public class Main {
     public String getGreeting() {
@@ -37,5 +37,10 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Failed to parse SQL: " + e.getMessage());
         }
+
+	try (Context context = Context.create()) {
+           context.eval("python", "print('Hello from GraalPy!')");
+	}
+
     }
 }
