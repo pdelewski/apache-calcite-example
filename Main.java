@@ -17,32 +17,13 @@ import org.apache.calcite.tools.RelBuilder;
 import org.apache.calcite.plan.RelOptUtil;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.HostAccess;
+
 public class Main {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-    public static void main(String[] args) {
-        // Define the SQL query
-     String sql = "SELECT name, age FROM users WHERE age > 30";
-
-        // Initialize the parser configuration
-        SqlParser.Config config = SqlParser.config();
-
-        // Parse the SQL statement
-        SqlParser parser = SqlParser.create(sql, config);
-        try {
-            SqlNode sqlNode = parser.parseQuery();
-            System.out.println("Parsed SQL AST: ");
-            System.out.println(sqlNode.toString());
-        } catch (Exception e) {
-            System.err.println("Failed to parse SQL: " + e.getMessage());
-        }
-
+    public static void main(String[] args) {       
 	try (Context context = Context.newBuilder().allowAllAccess(true).build()) {
            context.eval("python", "print('Hello from GraalPy!')");
            context.eval("python", "import site");
            context.eval("python", "import sqlglot");
 	}
-
     }
 }
