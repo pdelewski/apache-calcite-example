@@ -16,7 +16,7 @@ import org.apache.calcite.tools.Planner;
 import org.apache.calcite.tools.RelBuilder;
 import org.apache.calcite.plan.RelOptUtil;
 import org.graalvm.polyglot.Context;
-
+import org.graalvm.polyglot.HostAccess;
 public class Main {
     public String getGreeting() {
         return "Hello World!";
@@ -38,8 +38,10 @@ public class Main {
             System.err.println("Failed to parse SQL: " + e.getMessage());
         }
 
-	try (Context context = Context.create()) {
+	try (Context context = Context.newBuilder().allowAllAccess(true).build()) {
            context.eval("python", "print('Hello from GraalPy!')");
+           context.eval("python", "import site");
+           context.eval("python", "import sqlglot");
 	}
 
     }
