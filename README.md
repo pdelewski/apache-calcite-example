@@ -1,12 +1,6 @@
-# Apache calcite example
+# GraalVM test
 
-This is an example pom.xml for downloading apache calcite dependencies via
-
-```baah
-mvn dependency:copy-dependencies
-```
-
-or (into defined directory)
+Run `make` or below steps
 
 ```bash
 mvn dependency:copy-dependencies -DoutputDirectory=./libs
